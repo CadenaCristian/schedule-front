@@ -1,0 +1,68 @@
+<body>
+  <div class="container pt-5">
+    <div class="col-xs-12 col-sm-8 col-md-4 offset-md-4 pt-5 form-style">
+      <div class="text-center">
+        <label id="singIn" for="tab-1" (click)="singInChecked()" class="activate text-size">Sign In</label>
+        <label id="singUp" for="tab-1" (click)="singUpChecked()" class=" text-size">Sign Up</label>
+      </div>
+      <div>
+        <ng-container *ngIf="CheckedForm; then singInForm; else singUpForm"></ng-container>
+        <div class="text-center pt-3">
+          <strong style="color: aliceblue;">Forgot you password?</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<ng-template #singInForm>
+  <form class="mt-3" [formGroup]="loginForm">
+    <div class="mb-3">
+      <label class="form-label label-color">Email</label>
+      <input id="email" type="email" formControlName="email" class="form-control rounded-pill">
+      <div *ngIf="loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched">
+        <p class="text-danger" *ngIf="loginForm.get('userName')?.hasError('required')">
+          User is required
+        </p>
+      </div>
+    </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button" (click)="getCode(loginForm.value)"
+        [disabled]="loginForm.invalid">Log in</button>
+    </div>
+  </form>
+</ng-template>
+<ng-template #singUpForm>
+  <form class="mt-3" [formGroup]="registerForm">
+    <div class="mb-3">
+      <label class="form-label label-color">Email</label>
+      <input id="email" type="text" formControlName="email" class="form-control rounded-pill">
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        <p class="text-danger" *ngIf="registerForm.get('email')?.hasError('required')">
+          Email is required
+        </p>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label label-color">User name</label>
+      <input id="userName" type="text" formControlName="userName" class="form-control rounded-pill">
+      <div *ngIf="registerForm.get('userName')?.invalid && registerForm.get('userName')?.touched">
+        <p class="text-danger" *ngIf="registerForm.get('userName')?.hasError('required')">
+          User is required
+        </p>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label label-color">Password</label>
+      <input id="password" type="password" formControlName="password" class="form-control rounded-pill">
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        <p class="text-danger" *ngIf="registerForm.get('password')?.hasError('required')">
+          Password is required
+        </p>
+      </div>
+    </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button" [disabled]="registerForm.invalid">Register</button>
+    </div>
+  </form>
+</ng-template>

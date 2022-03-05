@@ -1,0 +1,23 @@
+body {
+  height: 100vh;
+  background-image: url("../../../../assets/login_fondo.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: auto;
+}
+.form-style {
+  background: rgba(40, 57, 101, 0.6);
+  padding: 10% 5% 5% 5%;
+}
+.text-size {
+  font-size: 30px;
+  padding-inline: 5%;
+}
+.activate {
+  color: aliceblue;
+  border-bottom: 3px solid #0d6efd;
+}
+.label-color {
+  color: aliceblue;
+}
